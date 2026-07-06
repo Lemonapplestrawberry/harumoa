@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>하루모아 — 하루 한 장, 아기 성장 타임랩스</title>
+<meta name="description" content="매일 아기 사진 한 장을 모아, 자라나는 과정을 타임랩스로. 사진은 폰 밖으로 나가지 않아요." />
+<meta property="og:title" content="하루모아 — 하루 한 장, 아기 성장 타임랩스" />
+<meta property="og:description" content="하루 한 장. 몇 년 뒤, 자라나는 마법." />
+<meta property="og:image" content="icon.png" />
+<link rel="icon" type="image/png" href="icon.png" />
+<style>
+  :root{
+    --bg:#F6F1FB; --card:#FFFFFF; --ink:#3A3345; --sub:#8E85A3;
+    --lav:#8B6FD8; --lav2:#E9DFFA; --lav3:#F3EAFD; --pink:#FF9EB5; --mint:#7ED8B8;
+    --shadow:0 10px 34px rgba(90,70,140,.12);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Noto Sans KR','Segoe UI',sans-serif;
+    background:linear-gradient(180deg,#F3EAFD 0%,#F6F1FB 40%,#FDFBFF 100%);color:var(--ink);line-height:1.6}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+
+  nav{display:flex;align-items:center;justify-content:space-between;padding:20px 0}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px}
+  .brand img{width:34px;height:34px;border-radius:9px}
+  nav .links{display:flex;align-items:center;gap:18px;font-size:13.5px;color:var(--sub);font-weight:600}
+  nav .links a:hover{color:var(--lav)}
+  .langtgl{display:flex;border:1.5px solid #E5DCF2;border-radius:999px;overflow:hidden}
+  .langtgl button{border:0;background:#fff;font-family:inherit;font-size:12px;font-weight:700;
+    padding:6px 12px;cursor:pointer;color:var(--sub)}
+  .langtgl button.on{background:var(--lav);color:#fff}
+
+  .hero{display:flex;align-items:center;gap:48px;padding:52px 0 72px;flex-wrap:wrap}
+  .hero-text{flex:1;min-width:300px}
+  h1{font-size:clamp(30px,4.6vw,46px);font-weight:800;line-height:1.28;letter-spacing:-.5px}
+  h1 .accent{color:var(--lav)}
+  .hero-text p{margin-top:16px;font-size:16.5px;color:var(--sub);max-width:430px}
+  .cta-row{display:flex;align-items:center;gap:12px;margin-top:28px;flex-wrap:wrap}
+  .store-badge{display:inline-flex;align-items:center;gap:9px;background:var(--ink);color:#fff;
+    border-radius:13px;padding:11px 20px;font-size:14px;font-weight:700}
+  .store-badge svg{width:20px;height:20px}
+  .store-badge small{display:block;font-size:10px;font-weight:500;opacity:.75;line-height:1.2}
+  .soon{font-size:12px;color:var(--sub);background:var(--lav2);border-radius:999px;padding:6px 13px;font-weight:700}
+  .trust-line{margin-top:18px;font-size:12.5px;color:#A79BC0}
+
+  .hero-phone{flex:0 0 auto;margin:0 auto}
+  .phone{width:280px;height:572px;background:var(--bg);border-radius:40px;
+    box-shadow:var(--shadow), inset 0 0 0 9px #241f30;padding:26px 20px;position:relative;overflow:hidden}
+  .phone .app-head{display:flex;align-items:baseline;gap:7px;margin:18px 4px 2px}
+  .phone .app-head b{font-size:17px}
+  .phone .app-head span{color:var(--lav);font-weight:800;font-size:12.5px}
+  .frame-card{background:#fff;border-radius:20px;box-shadow:0 6px 20px rgba(90,70,140,.10);
+    padding:16px;margin-top:12px;text-align:center}
+  .frame{width:186px;height:186px;border-radius:18px;margin:0 auto;overflow:hidden;position:relative}
+  .frame .dbadge{position:absolute;top:8px;left:9px;background:rgba(0,0,0,.38);color:#fff;
+    font-size:10.5px;font-weight:800;border-radius:999px;padding:2px 9px;z-index:3}
+  .frame-cap{margin-top:10px;font-size:12px;color:var(--mint);font-weight:800}
+  .mini-cal{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;background:#fff;border-radius:16px;
+    box-shadow:0 6px 20px rgba(90,70,140,.10);padding:13px;margin-top:12px}
+  .mini-cal i{aspect-ratio:1;border-radius:6px;background:var(--lav3)}
+  .mini-cal i.on{background:var(--lav2)}
+
+  section{padding:64px 0}
+  .sec-title{text-align:center;font-size:clamp(22px,3vw,30px);font-weight:800;letter-spacing:-.3px}
+  .sec-sub{text-align:center;color:var(--sub);margin-top:10px;font-size:15px}
+  .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:38px}
+  .feature{background:var(--card);border-radius:22px;box-shadow:var(--shadow);padding:28px 24px}
+  .feature .icon{width:46px;height:46px;border-radius:14px;background:var(--lav3);display:grid;place-items:center;margin-bottom:16px}
+  .feature .icon svg{width:22px;height:22px;stroke:var(--lav)}
+  .feature h3{font-size:16.5px;margin-bottom:8px}
+  .feature p{font-size:13.5px;color:var(--sub)}
+
+  .plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:38px;max-width:720px;margin-left:auto;margin-right:auto}
+  .plan{background:var(--card);border-radius:22px;box-shadow:var(--shadow);padding:30px 26px;position:relative}
+  .plan.hot{outline:2.5px solid var(--lav)}
+  .plan .tag{position:absolute;top:-11px;right:20px;background:var(--pink);color:#fff;font-size:11px;
+    font-weight:800;border-radius:999px;padding:4px 11px}
+  .plan h3{font-size:17px}
+  .plan .price{font-size:24px;font-weight:800;margin:10px 0 2px}
+  .plan .price small{font-size:13px;color:var(--sub);font-weight:600}
+  .plan ul{list-style:none;margin-top:16px;display:flex;flex-direction:column;gap:9px}
+  .plan li{font-size:13.5px;color:var(--sub);padding-left:22px;position:relative}
+  .plan li::before{content:"✓";position:absolute;left:0;color:var(--mint);font-weight:800}
+
+  footer{padding:44px 0 60px;text-align:center;color:#A79BC0;font-size:13px}
+  footer .flinks{display:flex;gap:18px;justify-content:center;margin-bottom:14px;font-weight:600;color:var(--sub)}
+  footer .flinks a:hover{color:var(--lav)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a class="brand" href="#"><img src="icon.png" alt="Harumoa" /><span data-i18n="brand">하루모아</span></a>
+    <div class="links">
+      <a href="#features" data-i18n="nav.features">기능</a>
+      <a href="#pricing" data-i18n="nav.pricing">가격</a>
+      <a href="privacy.html" id="privacyLink" data-i18n="nav.privacy">개인정보처리방침</a>
+      <span class="langtgl">
+        <button id="btnKo" onclick="setLang('ko')">한</button>
+        <button id="btnEn" onclick="setLang('en')">EN</button>
+      </span>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-text">
+      <h1 id="heroTitle"></h1>
+      <p data-i18n="hero.sub"></p>
+      <div class="cta-row">
+        <span class="store-badge">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.53 4.08zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+          <span>App Store<small data-i18n="hero.badgeSub">Coming soon</small></span>
+        </span>
+        <span class="soon" data-i18n="hero.soon">2026 출시 예정</span>
+      </div>
+      <div class="trust-line" data-i18n="hero.trust"></div>
+    </div>
+
+    <div class="hero-phone">
+      <div class="phone">
+        <div class="app-head"><b data-i18n="demo.name">콩이</b><span id="dplus">D+1</span></div>
+        <div class="frame-card">
+          <div class="frame" id="frame">
+            <span class="dbadge" id="dbadge">D+1</span>
+          </div>
+          <div class="frame-cap" data-i18n="demo.cap"></div>
+        </div>
+        <div class="mini-cal" id="minical"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="features">
+  <div class="wrap">
+    <div class="sec-title" data-i18n="feat.title"></div>
+    <div class="sec-sub" data-i18n="feat.sub"></div>
+    <div class="features">
+      <div class="feature">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg></div>
+        <h3 data-i18n="feat.f1t"></h3>
+        <p data-i18n="feat.f1s"></p>
+      </div>
+      <div class="feature">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+        <h3 data-i18n="feat.f2t"></h3>
+        <p data-i18n="feat.f2s"></p>
+      </div>
+      <div class="feature">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+        <h3 data-i18n="feat.f3t"></h3>
+        <p data-i18n="feat.f3s"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <div class="sec-title" data-i18n="price.title"></div>
+    <div class="sec-sub" data-i18n="price.sub"></div>
+    <div class="plans">
+      <div class="plan">
+        <h3 data-i18n="price.freeT"></h3>
+        <div class="price" data-i18n="price.freeP"></div>
+        <ul>
+          <li data-i18n="price.free1"></li>
+          <li data-i18n="price.free2"></li>
+          <li data-i18n="price.free3"></li>
+          <li data-i18n="price.free4"></li>
+        </ul>
+      </div>
+      <div class="plan hot">
+        <span class="tag" data-i18n="price.tag"></span>
+        <h3 data-i18n="price.plusT"></h3>
+        <div class="price" id="plusPrice"></div>
+        <ul>
+          <li data-i18n="price.plus1"></li>
+          <li data-i18n="price.plus2"></li>
+          <li data-i18n="price.plus3"></li>
+          <li data-i18n="price.plus4"></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="flinks">
+      <a href="privacy.html" id="fPrivacy" data-i18n="foot.privacy"></a>
+      <a href="mailto:harumoa.help@gmail.com" data-i18n="foot.contact"></a>
+    </div>
+    © 2026 Harumoa · harumoa.help@gmail.com
+  </div>
+</footer>
+
+<script>
+/* ── i18n: 브라우저 언어 자동 감지 + 수동 토글(기억) ── */
+const T = {
+  ko: {
+    brand:'하루모아',
+    'nav.features':'기능', 'nav.pricing':'가격', 'nav.privacy':'개인정보처리방침',
+    heroTitle:'하루 한 장.<br/>몇 년 뒤, <span class="accent">자라나는 마법.</span>',
+    'hero.sub':'매일 아기 사진을 한 장씩 모으면, 백일·첫돌엔 아기가 쑥쑥 자라나는 타임랩스가 완성돼요.',
+    'hero.badgeSub':'Coming soon', 'hero.soon':'2026 출시 예정',
+    'hero.trust':'회원가입 없음 · 광고 없음 · 사진은 폰 밖으로 나가지 않아요',
+    'demo.name':'콩이', 'demo.cap':'✓ 오늘의 콩이, 저장 완료',
+    'feat.title':'흔들리지 않는 타임랩스의 비밀', 'feat.sub':'하루 3초면 충분해요',
+    'feat.f1t':'정렬 가이드 + 어제 고스트',
+    'feat.f1s':'어제 사진이 반투명하게 겹쳐 보여요. 가이드에 맞춰 따라 찍기만 하면 매일 같은 자리 — 이어붙이면 부드러운 타임랩스가 돼요.',
+    'feat.f2t':'밀린 날도 자동으로',
+    'feat.f2s':'앨범에서 여러 장을 고르면 촬영 날짜를 읽어 알맞은 날에 착착 채워드려요. 놓친 날이 있어도 괜찮아요.',
+    'feat.f3t':'사진은 폰 안에만',
+    'feat.f3s':'회원가입도, 서버 전송도 없어요. 소중한 아기 사진은 기본적으로 당신의 폰을 떠나지 않아요.',
+    'price.title':'촬영과 보관은 언제나 무료', 'price.sub':'잠기는 건 타임랩스뿐이에요',
+    'price.freeT':'무료', 'price.freeP':'₩0',
+    'price.free1':'매일 촬영·보관 무제한', 'price.free2':'아이 몇 명이든 등록',
+    'price.free3':'지난 7일 미니 타임랩스', 'price.free4':'지난 사진 자동 채우기',
+    'price.tag':'첫돌까지 함께', 'price.plusT':'하루모아+',
+    plusPrice:'월 5,900원 <small>· 연 39,000원</small>',
+    'price.plus1':'전체 기간 HD 타임랩스 무제한', 'price.plus2':'백일·첫돌 기념일 영상',
+    'price.plus3':'원하는 기간 직접 설정', 'price.plus4':'클라우드 백업 (출시 예정)',
+    'foot.privacy':'개인정보처리방침', 'foot.contact':'문의하기',
+    title:'하루모아 — 하루 한 장, 아기 성장 타임랩스',
+    privacyHref:'privacy.html',
+  },
+  en: {
+    brand:'Harumoa',
+    'nav.features':'Features', 'nav.pricing':'Pricing', 'nav.privacy':'Privacy',
+    heroTitle:'One photo a day.<br/>Years later, <span class="accent">magic.</span>',
+    'hero.sub':"Collect one photo of your baby each day — by their 100th day and first birthday, you'll have a timelapse of them growing up.",
+    'hero.badgeSub':'Coming soon', 'hero.soon':'Launching 2026',
+    'hero.trust':'No sign-up · No ads · Photos never leave your phone',
+    'demo.name':'Kongi', 'demo.cap':"✓ Today's Kongi, saved",
+    'feat.title':'The secret to a steady timelapse', 'feat.sub':'3 seconds a day is enough',
+    'feat.f1t':"Alignment guide + yesterday's ghost",
+    'feat.f1s':"Yesterday's photo overlays translucently — just match and snap. Every shot lands in the same spot, so the timelapse flows smooth.",
+    'feat.f2t':'Missed days fill themselves',
+    'feat.f2s':'Pick photos from your library — Harumoa reads their dates and places them on the right days automatically.',
+    'feat.f3t':'Photos stay on your phone',
+    'feat.f3s':"No sign-up, no server upload. Your baby's photos never leave your device.",
+    'price.title':'Capturing & keeping is always free', 'price.sub':'Only timelapses unlock',
+    'price.freeT':'Free', 'price.freeP':'$0',
+    'price.free1':'Unlimited daily photos', 'price.free2':'Unlimited children',
+    'price.free3':'Last-7-days mini timelapse', 'price.free4':'Auto-import past photos',
+    'price.tag':'For the first year & beyond', 'price.plusT':'Harumoa+',
+    plusPrice:'Monthly · Yearly <small>— pricing in your local App Store</small>',
+    'price.plus1':'Full-length HD timelapses', 'price.plus2':'100-day & birthday films',
+    'price.plus3':'Custom date ranges', 'price.plus4':'Cloud backup (coming soon)',
+    'foot.privacy':'Privacy Policy', 'foot.contact':'Contact',
+    title:'Harumoa — One photo a day, baby growth timelapse',
+    privacyHref:'privacy-en.html',
+  },
+};
+let lang = localStorage.getItem('harumoa_lang')
+  || ((navigator.language || 'en').toLowerCase().startsWith('ko') ? 'ko' : 'en');
+
+function setLang(l){
+  lang = l;
+  localStorage.setItem('harumoa_lang', l);
+  const d = T[l];
+  document.documentElement.lang = l;
+  document.title = d.title;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.getAttribute('data-i18n');
+    if (d[k] !== undefined) el.textContent = d[k];
+  });
+  document.getElementById('heroTitle').innerHTML = d.heroTitle;
+  document.getElementById('plusPrice').innerHTML = d.plusPrice;
+  document.getElementById('privacyLink').href = d.privacyHref;
+  document.getElementById('fPrivacy').href = d.privacyHref;
+  document.getElementById('btnKo').classList.toggle('on', l==='ko');
+  document.getElementById('btnEn').classList.toggle('on', l==='en');
+}
+setLang(lang);
+
+/* ── 히어로 폰: 자라나는 아기 일러스트 타임랩스 ── */
+function babyBG(day){ return `hsl(${(day*11)%360} 65% 93%)`; }
+function babySVG(day){
+  const s = 1 + day*0.0028;
+  const tilt = Math.sin(day*1.7)*4;
+  const blink = day%9===4;
+  const smile = 10 + (day%5);
+  const hair = 1 + Math.min(3, Math.floor(day/35));
+  let hairs='';
+  for(let i=0;i<hair;i++){
+    const hx=-8+i*8;
+    hairs+=`<path d="M ${hx} -50 q 4 -10 10 -6" stroke="#B58A66" stroke-width="3.4" fill="none" stroke-linecap="round"/>`;
+  }
+  return `<svg viewBox="0 0 200 200" style="width:100%;height:100%;display:block;background:${babyBG(day)}">
+    <g transform="translate(100,108) scale(${s}) rotate(${tilt})">
+      <ellipse cx="0" cy="0" rx="58" ry="55" fill="#FFE3D0"/>
+      <ellipse cx="-60" cy="4" rx="10" ry="14" fill="#FFD9C2"/>
+      <ellipse cx="60" cy="4" rx="10" ry="14" fill="#FFD9C2"/>
+      ${hairs}
+      ${blink
+        ? `<path d="M -26 -8 q 6 5 12 0 M 14 -8 q 6 5 12 0" stroke="#4A3B33" stroke-width="4" fill="none" stroke-linecap="round"/>`
+        : `<circle cx="-20" cy="-8" r="5.5" fill="#4A3B33"/><circle cx="20" cy="-8" r="5.5" fill="#4A3B33"/>
+           <circle cx="-18" cy="-10" r="1.8" fill="#fff"/><circle cx="22" cy="-10" r="1.8" fill="#fff"/>`}
+      <ellipse cx="-36" cy="8" rx="9" ry="6" fill="#FFB9A3" opacity=".7"/>
+      <ellipse cx="36" cy="8" rx="9" ry="6" fill="#FFB9A3" opacity=".7"/>
+      <path d="M -${smile} 16 q ${smile} ${smile} ${smile*2} 0" stroke="#4A3B33" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+    </g></svg>`;
+}
+const frame=document.getElementById('frame'), dbadge=document.getElementById('dbadge'), dplus=document.getElementById('dplus');
+let day=1;
+const spriteHolder=document.createElement('div');
+spriteHolder.style.cssText='position:absolute;inset:0';
+frame.appendChild(spriteHolder);
+const cal=document.getElementById('minical');
+for(let i=0;i<21;i++){ cal.insertAdjacentHTML('beforeend','<i></i>'); }
+setInterval(()=>{
+  day = day>=100 ? 1 : day+1;
+  spriteHolder.innerHTML = babySVG(day);
+  dbadge.textContent = 'D+'+day;
+  dplus.textContent = 'D+'+day;
+  const cells=document.querySelectorAll('#minical i');
+  cells.forEach((c,i)=>{ c.className = i < (day/100)*cells.length ? 'on' : ''; });
+},140);
+</script>
+</body>
+</html>
