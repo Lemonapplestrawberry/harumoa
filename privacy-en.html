@@ -31,13 +31,15 @@
 <div class="wrap">
   <a class="brand" href="index.html"><img src="icon.png" alt="" /><span>Harumoa</span></a>
   <h1>Privacy Policy</h1>
-  <div class="date">Effective: 2026-07-06 · <a href="privacy.html">한국어</a></div>
+  <div class="date">Effective: 2026-07-06 · Last updated: 2026-07-08 · <a href="privacy.html">한국어</a></div>
 
   <div class="summary">
     <b>At a glance</b><br/>
     Harumoa has no sign-up. All data — including your baby's photos — is stored
-    <b>only on your device</b>. Nothing is sent to a server, there are no ads or
-    tracking tools, and no information is ever shared with third parties.
+    <b>on your device by default</b>. There are no ads or tracking tools, and no
+    information is ever shared with third parties. Only if you turn on the optional
+    <b>cloud backup (Harumoa+)</b> are your photos transmitted encrypted and stored
+    on servers in the EU region.
   </div>
 
   <h2>1. Information we handle and where it lives</h2>
@@ -46,6 +48,7 @@
     <tr><td>Baby's name and date of birth</td><td>On device</td><td>Day counter (D+n), reminder text</td></tr>
     <tr><td>Daily photos</td><td>On device</td><td>Growth record and timelapse playback</td></tr>
     <tr><td>App settings (reminder time, etc.)</td><td>On device</td><td>App functionality</td></tr>
+    <tr><td>Backup data (photos, clips, child profile) — <b>only if backup is enabled</b></td><td>EU-region servers (Cloudflare R2)</td><td>Cloud backup &amp; restore on a new phone</td></tr>
   </table>
   <p>Harumoa does not collect accounts, emails, or phone numbers. Subscription payments
   are processed by Apple; Harumoa never sees your payment details.</p>
@@ -60,21 +63,32 @@
   <p>Each permission is requested only when you use the related feature. Declining
   a permission does not affect the rest of the app.</p>
 
-  <h2>3. Retention and deletion</h2>
-  <p>Because all data lives on your device, deleting the app deletes the data.
-  (Copies saved to your photo library via "Also save to Photos" remain in your library.)</p>
+  <h2>3. Cloud backup (optional · Harumoa+)</h2>
+  <ul>
+    <li>Backup runs <b>only if you turn it on</b>. Otherwise nothing is ever sent to a server.</li>
+    <li>What is backed up: photos, 3-second clips, and the child profile (name, date of birth).
+    Where: <b>EU-region</b> storage (Cloudflare R2, EU jurisdiction).</li>
+    <li>Access requires a <b>recovery code</b> generated on your device. The server works only
+    with a hash of the code and never stores the code itself. All transfers are TLS-encrypted.</li>
+    <li><b>Sign in with Apple (optional)</b>: used solely to attach your recovery code to your
+    Apple account for one-tap restore. Only Apple's anonymous user identifier is processed —
+    we never request your name or email.</li>
+    <li>Deleting backups: deleting the app does not delete server backups. To delete them,
+    contact <a href="mailto:harumoa.help@gmail.com">harumoa.help@gmail.com</a> and we will
+    remove them promptly.</li>
+  </ul>
 
-  <h2>4. Children's privacy</h2>
-  <p>Harumoa's users are parents and guardians (adults). Baby photos are taken and
-  kept by the guardian and never leave the guardian's device.</p>
+  <h2>4. Retention and deletion</h2>
+  <p>On-device data is deleted when you delete the app. (Copies saved via "Also save to
+  Photos" remain in your photo library; server backups, if enabled, are handled per section 3.)</p>
 
-  <h2>5. Third parties and advertising</h2>
-  <p>None. Harumoa uses no ad networks and no analytics/tracking SDKs.</p>
+  <h2>5. Children's privacy</h2>
+  <p>Harumoa's users are parents and guardians (adults). Baby photos are taken and kept by
+  the guardian, and never leave the guardian's device unless the guardian enables backup.</p>
 
-  <h2>6. Future changes</h2>
-  <p>When optional cloud backup (a subscription feature) launches, photos of users who
-  enable it may be stored encrypted on our servers. This policy will be updated and
-  announced in the app before that feature ships.</p>
+  <h2>6. Third parties and advertising</h2>
+  <p>Harumoa uses no ad networks and no analytics/tracking SDKs. Backup data is stored with
+  our infrastructure provider Cloudflare (EU region); no other third party receives any data.</p>
 
   <h2>7. Contact</h2>
   <p>Privacy questions: <a href="mailto:harumoa.help@gmail.com">harumoa.help@gmail.com</a></p>
